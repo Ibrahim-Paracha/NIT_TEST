@@ -1,6 +1,5 @@
-# Day 35
+# Day 35 (Understanding the ping command)
 
-Understanding the ping command
 PING is short for Packet InterNet Groper
 Ping uses the ICMP protocol (Internet Control Message Protocol)
 
