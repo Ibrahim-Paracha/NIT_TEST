@@ -8,7 +8,7 @@ Difference between su - user and su user is that with the -, it logs in as the u
 
 `STOUT = 1`, `STERR = 2`, `STIN = 0`
 
-To add both STOUT and STERR to a file, eg `cat /etc/passwd /etc/shadow > file.txt 2>&1`, which means that just put the error along with the output, so you should get both the output from the /passwd file, and the error from the /shadow file in the file.txt.
+To add both STOUT and STERR to a file, eg `cat /etc/passwd /etc/shadow > file.txt 2>&1` (the 2>&1 is replaced with &> now), which means that just put the error along with the output, so you should get both the output from the /passwd file, and the error from the /shadow file in the file.txt.
 
 If you wish to add the output and error in separate files, you can run `cat /etc/passwd /etc/shadow > output.txt 2> error.txt`.
 
@@ -18,10 +18,12 @@ If you wish to add the output and error in separate files, you can run `cat /etc
 
 x=1, w=2, r=4
 
-The kernel gives full permission ie for files 666 and for directories 777, but the umask by default changes the values, and subtracts 022 from each of them. So 644 and 755.
+The kernel gives full permission ie for files 666 and for directories 777, but the umask by default changes the values, and subtracts 022 from each of them. So 644 and 755. The umask value is in /etc/login.defs, and it can also be changed from there.
 
 chmod to change file permissions
 chown to change file owner
 chgrp to change file group
 (chown can change both owner and group together as well, by running chown username:groupname filename, and if you just run this command without the username {:groupname} this will change just the groupname)
 
+`namei -l /home/username/filename`
+This command shows the permissions for all the files in the specified path.
