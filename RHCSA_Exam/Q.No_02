@@ -1,0 +1,21 @@
+# RHCSA Exam Question No 2
+
+==========================================
+
+In the second question on the RH exam, all they want you to do is create a configuration file, inside it, point the content towards a server and test it. The purpose of this is that instead of going outside of the datacenter to download a file, we just download it locally.
+
+Configuration file : /etc/yum.repos.d is the directory, the conf files are within it, when you type dnf install package, it looks inside the files within it inside the rocky.repo file, which has a bunch of lists inside it, with either enabled=1 or =0, if its 1, its gonna look within it.
+
+When you type dnf, it goes into the cfg file which points to the server with a list that has both the BaseOS and Appstream repos in it, and it brings the package from that.
+
+- Steps for the Exam
+
+`dnf repolist`
+`dnf repolist --all` (to see which repo is enabled)
+Create a configuration file in /etc/yum.repo.d with the name given, otherwise eight.repo (NOT WITH A DASH -repo) or whatever name you choose
+Inside the file in the first line `[eight-baseos]`, in second line `name=EightBaseOS`, in the third `baseurl=the_url_given`, in the fourth `gpgcheck=0`, in the fifth `enabled=1`
+Then `[eight=appstream]`, 2nd line `name=EightAppStream`, 3rd line `baseurl=url_given`, 4th line `gpgcheck=0`, 5th line `enabled=1`.
+If they give a gpg key, make `gpgcheck=1` and add a line `gpgkey=given_key`
+`dnf repolist` and `dnf repolist --all`
+`dnf clean all` (to refresh and clear the cache)
+`dnf makecache` (this will give an error while testing, because the url you enter will just be a dummy url, while in the exam they will provide a working url)

@@ -1,0 +1,18 @@
+# RHCSA Exam Question No 10
+
+==========================================
+
+Q. Find the regular files greater than 4mbs in /etc and put it into a given file.
+A. mkdir -p /find/largefiles
+   find /etc -type f -size +4M -exec cp {} /find/largefiles/ \;
+   ls -lh /find/largefiles
+
+ (Regular files are files that arent sym links, sockets or blocks)
+ (When using -size, if the number is 4, you have 3 options, -4 for less than 4, 4 for 4, and +4 for greater than 4)
+ (exec basically takes the files that the find command outputs and runs the second command on them)
+ (the {} represents all the files found, while \; represents the end of the command, it is part of the syntax)
+
+Note: Make it a habit to always enter whoami and pwd before entering anything else.
+
+Real Life Scenario:
+If there is a unexpected growth of size in some files in /etc or some other folder, this command would be helpful in investigating it.
