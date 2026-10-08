@@ -25,6 +25,7 @@
 
 Can be set with either `chmod 1755 folder` or `chmod +t folder`
 (in a directory with sticky bit, only users or root can delete their own files, even if others have write permission they cant delete the files, this is mostly common in the /tmp folder)(showed with a t at the end of the permissions)(there should be a 1 if the stat command is run on the file in the access section) 
+If at the end of the permissions the t is small, that means that others have execute permissions, if the T is captial, that means that other do not have execute permissions.
 
 
 ## SUID (special permission for user)(represented with a 4)
