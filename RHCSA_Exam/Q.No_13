@@ -1,0 +1,17 @@
+13 Oct, RHCSA Question No 13
+
+=======================================
+
+The umask is 022 by default, and the default values hard coded into Linux for files is 666, and for folders 777. The exam wants you to change the umask for just a single user (bruce). (The steps are provided for a umask of r-------- for files and dr-x------ for directories so we get 0277 by 777-500 {we will just use the directory settings cause it is higher} so rx=5 and all the rest are 0, so we get 277).
+`echo $(( 777 - 500 = umask ))` using this command is also an option.
+
+Steps:
+umask
+cd /home/bruce
+vim .bashrc
+At the end of the file, insert `umask 0277`
+source .bashrc
+umask
+
+
+Regular file means that it shouldn't be a link, a block, a socket or a directory.

@@ -1,0 +1,37 @@
+7 Oct, RHCSA Exam Question No 4
+
+=======================================
+
+Identity and Group Provisioning
+
+user means to enter each user separately.
+
+`groupadd -h` to see available options.
+`useradd -h`
+`which nologin` to see the full path of this command
+`getent group` `getent passwd user`
+`gpasswd -d user group` to remove a user from a group
+If primary isn't mentioned, it means secondary.
+
+What needs to be done:
+Create a group named admins with a fixed GID of 3500
+Create a group named users
+Create accounts for the following: harry with a primary group of admins and a secondary group of users and a UID of 3455, natasha with secondary groups of admins and users and a UID of 3456, sarah with a non-interactive shell, and bruce who has a home explicitly and is a member of the admins group (Secondary group) (If they ask for this user to have a home directory, user -M)
+Set all their passwords to "password"
+Validate data
+Test Sarahs nonlogin
+
+Steps:
+groupadd -g 3500 admins
+groupadd users
+useradd -g admins -G users -u 3455 harry
+useradd -G admins,users -u 3456 natasha
+useradd -s /usr/sbin/nologin sarah (check the path of nologin with which nologin, then enter the path after -s)
+useradd -m -G admins bruce
+There are multiple ways to set the password: 1) passwd user 2) echo "password" | passwd --stdin user
+To validate: id user, getent group, getent passwd harry natasha sarah bruce, then pwck -r and grpck -r
+
+To delete all this, just delete the user and the groups created.
+
+
+Reasons why a user cant SSH, 1) User doesn't exist 2) Password isn't set 3) The account is locked

@@ -1,0 +1,15 @@
+# RHCSA Exam Question No 14
+
+==========================================
+
+Configure the system so that all new users passwords must be at least 9 characters long and also expire after 30 days.
+`chage -l username` to check some password details.
+
+Steps:
+
+vim /etc/login.defs, change PASS_MAX_DAYS to 30
+We need to change the value of "Maximum number of days between password changes"
+find /etc -type f -name "*pwquality*" (if you cant remember where this file is)
+vim /etc/security/pwquality.conf
+In the 9th or 10th line, change minlen = 8 to minlen = 10
+Test by adding a user, and chage -l new_user, (Maximum no of days should be 30) and then `passwd new_user`

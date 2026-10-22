@@ -1,0 +1,20 @@
+12 Oct, RHCSA Question No 8
+
+=============================================
+
+Copy the /etc/fstab file to /var/tmp and adjust the permissions
+(If the question mentions that the previous permissions be preserved, use -p, and if the word recursive is used, use -r)
+The copied file must be owned by root, belong to the admins group, must not be executable by any user, owner and group must have read and write permissions, harry should also have read and write permissions, bruce should have just read, natasha should have neither read or write, and all other users including the ones created in the future should only have read permissions.
+ 
+
+Steps:
+cp /etc/fstab /var/tmp
+ls -ld /var/tmp/fstab
+chown root:admins /var/tmp/fstab
+chmod a-x /var/tmp/fstab
+chmod 664 /var/tmp/fstab
+setfacl -m u:harry:rw- /var/tmp/fstab
+setfacl -m u:bruce:r-- /var/tmp/fstab
+setfacl -m u:natasha:--- /var/tmp/fstab
+setfacl -m m::r-- /var/tmp/fstab
+getfacl /var/tmp/fstab

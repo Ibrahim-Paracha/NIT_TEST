@@ -1,0 +1,10 @@
+8 Oct, RHCSA Exam Question No 5
+
+Steps:
+mkdir -p /groups/admins /groups/users
+ls -l /groups
+chgrp admins /groups/admins
+chmod 770 /groups/admins
+chmod g+s /groups/admins (to apply SGID)
+chgrp users /groups/users
+chmod 1770 /groups/users (To apply sticky bit)

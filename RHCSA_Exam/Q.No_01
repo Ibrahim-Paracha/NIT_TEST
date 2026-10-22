@@ -1,0 +1,19 @@
+5 Oct, RHCSA Exam Question #1
+Network Foundation and Persistent Identity
+Purpose: To make the IP static
+Things to do: Change the hostname, make the ip persistent
+
+Steps:
+`nmtui`, then select "edit connection", in the edit option enX0 option change ipv4 configuration to Manual, then press tab and add the address with the mask. (192.168.1.97/24)
+Add the gateway address
+Add the DNS server 8.8.8.8, then save and exit
+nmcli connection reload
+nmcli connection up enX0
+nmcli connection show
+
+
+NOTE: If nmcli or nmtui command isn't working in the exam, try systemctl status NetworkManager, then systemctl restart NetworkManager
+
+Just like servers have NIC cards that are physical, VMs in that server have adapters that allocate Virtual CPU, RAM and storage to those VMs. By deactivating enX0, you turn off the adapter which causes the VM to just shut off. To turn it back on you have to go to Xen, and type nmcli connecton up enX0
+
+RS232 = 8 pin D connection
