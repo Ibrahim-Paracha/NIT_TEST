@@ -1,0 +1,16 @@
+22 Oct, RHCSA Exam Question No 9
+
+=========================================
+
+NTP = Network Time Protocol
+
+Steps:
+vim /etc/chronyd.conf
+At the top there should be some servers, add this line to it (after this line `pool 2.rocky.pool.ntp.org iburst` and you also have it hash this line out) `server time.google.com iburst` (iburst means to apply the changes immediately after saving the file)
+Restart the chronyd service by `systemctl restart chronyd`
+systemctl status chronyd
+chronyc sources -v (This is an important command to check the NTP servers)
+timedatectl set-ntp true (see `timedatectl -h` for more details)
+
+
+(If the question is on the interview that have you done patching? The answer shouldn't be simply that yes i have done patching, you have to add the details on how you did it eg I have done patching and the way i did it was that i updated the NTP server by first using the file editor into /etc/chrony.conf, added the server time line, then updated the chronyd service)
